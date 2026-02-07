@@ -17,7 +17,7 @@
 
 {#if onclick}
 	<button
-		class="flex aspect-square w-[calc(min(42vw,42vh)*0.618)] items-center justify-center rounded-full border-3 border-white text-white hover:bg-white/10 {className}"
+		class="flex aspect-square w-[calc(min(60vw,42vh)*0.618)] items-center justify-center rounded-full border-3 border-white text-white hover:bg-white/10 {className}"
 		aria-label={label}
 		{onclick}
 		{...rest}
@@ -26,7 +26,7 @@
 	</button>
 {:else}
 	<div
-		class="flex aspect-square w-[calc(min(42vw,42vh)*0.618)] items-center justify-center rounded-full border-3 border-white text-white {className}"
+		class="flex aspect-square w-[calc(min(60vw,42vh)*0.618)] items-center justify-center rounded-full border-3 border-white text-white {className}"
 		{...rest}
 	>
 		{@render children()}
