@@ -3,20 +3,51 @@
 	import MidCircle from '$lib/components/MidCircle.svelte';
 	import SmallCircle from '$lib/components/SmallCircle.svelte';
 	import { Menu, Wrench, Pause, Play } from 'lucide-svelte';
+	import { Timer } from '$lib/timer.svelte';
 
-	let isRunning = $state(false);
+	let currentMode = $state<'work' | 'rest'>('work');
+
+	const workTimer = new Timer({
+		initialTime: 3,
+		onFinish: () => {
+			currentMode = 'rest';
+			workTimer.reset();
+			restTimer.start();
+		}
+	});
+
+	const restTimer = new Timer({
+		initialTime: 10,
+		onFinish: () => {
+			currentMode = 'work';
+			restTimer.reset();
+			workTimer.start();
+		}
+	});
+
+	let isRunning = $derived(workTimer.isRunning || restTimer.isRunning);
+
+	function toggleTimer() {
+		const activeTimer = currentMode === 'work' ? workTimer : restTimer;
+		if (activeTimer.isRunning) {
+			activeTimer.pause();
+		} else {
+			activeTimer.start();
+		}
+	}
 </script>
 
 <div
 	class="relative flex h-screen w-screen flex-col items-center justify-center gap-[calc(min(60vw,42vh)*0.191)] bg-black pt-[5vh]"
 >
-	<BigCircle>
-		40
+	<BigCircle isRunning={workTimer.isRunning}>
+		{workTimer.timeLeft}
 		<SmallCircle
+			isRunning={restTimer.isRunning}
 			class="absolute"
 			style="top: -7.2%; left: -7.2%; transform: translate(-50%, -50%);"
 		>
-			10
+			{restTimer.timeLeft}
 		</SmallCircle>
 		<SmallCircle
 			class="absolute"
@@ -26,7 +57,7 @@
 		</SmallCircle>
 	</BigCircle>
 
-	<MidCircle onclick={() => (isRunning = !isRunning)} label={isRunning ? 'Pause' : 'Play'}>
+	<MidCircle onclick={toggleTimer} label={isRunning ? 'Pause' : 'Play'}>
 		{#if isRunning}
 			<Pause class="h-1/2 w-1/2" fill="currentColor" />
 		{:else}
