@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="relative flex h-screen w-screen flex-col items-center justify-center gap-[calc(min(80vw,42vh)*0.191)] bg-black pt-[5vh]"
+	class="relative flex h-screen w-screen flex-col items-center justify-center gap-[calc(min(60vw,42vh)*0.191)] bg-black pt-[5vh]"
 >
 	<BigCircle>
 		40

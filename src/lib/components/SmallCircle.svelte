@@ -17,7 +17,7 @@
 
 {#if onclick}
 	<button
-		class="flex aspect-square w-[calc(min(80vw,42vh)*0.382)] items-center justify-center rounded-full border-3 border-white bg-black text-[calc(min(80vw,42vh)*0.16)] text-white hover:bg-white/10 {className}"
+		class="flex aspect-square w-[calc(min(60vw,42vh)*0.382)] items-center justify-center rounded-full border-3 border-white bg-black text-[calc(min(60vw,42vh)*0.16)] text-white hover:bg-white/10 {className}"
 		style="font-family: 'Andale Mono', monospace;"
 		aria-label={label}
 		{onclick}
@@ -27,7 +27,7 @@
 	</button>
 {:else}
 	<div
-		class="flex aspect-square w-[calc(min(80vw,42vh)*0.382)] items-center justify-center rounded-full border-3 border-white bg-black text-[calc(min(80vw,42vh)*0.16)] text-white {className}"
+		class="flex aspect-square w-[calc(min(60vw,42vh)*0.382)] items-center justify-center rounded-full border-3 border-white bg-black text-[calc(min(60vw,42vh)*0.16)] text-white {className}"
 		style="font-family: 'Andale Mono', monospace;"
 		{...rest}
 	>
